@@ -147,17 +147,17 @@
                             Orientation="Vertical"
                             Margin="0,35,0,0" Cursor="">
 
-                    <Image Source="\Images\Zyro-image.png"
-                           Width="100" Height="100"/>
+                    <Image Source="\Images\medical-report_4290015.png"
+                           Width="90" Height="90"/>
 
-                    <TextBlock Text="Veterinaria"
+                    <TextBlock Text="Centro Medico"
                                Foreground="White"
                                FontSize="25"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center"/>
 
-                    <TextBlock Text="Aplicacion dedicada al cuidado de los animales"
+                    <TextBlock Text="Aplicacion dedicada al cuidado del ser humano"
                                Foreground="LightGray"
                                FontSize="12"
                                FontWeight="Medium"
