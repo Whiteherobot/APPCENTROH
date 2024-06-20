@@ -46,7 +46,7 @@ namespace APPVETERINARIA.Views
 
         private void BtnRegisterClient_Click(object sender, RoutedEventArgs e)
         {
-            RegisterClientView registerclientView = new RegisterClientView();
+            RegisterView registerclientView = new RegisterView();
 
             registerclientView.Show();
 
@@ -56,15 +56,6 @@ namespace APPVETERINARIA.Views
         private void TextBlock_MouseDown(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void BtnRegisterEmploye_Click(object sender, RoutedEventArgs e)
-        {
-            RegisterEmployeView registeremployeView = new RegisterEmployeView();
-
-            registeremployeView.Show();
-
-            this.Close();
         }
     }
 }

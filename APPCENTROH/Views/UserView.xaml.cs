@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APPVETERINARIA.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +12,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using APPVETERINARIA.Views;
+using System.Xml.Linq;
 
-namespace APPVETERINARIA.View
+namespace APPCENTROM.Views
 {
     /// <summary>
-    /// Lógica de interacción para RegisterView.xaml
+    /// Interaction logic for UserView.xaml
     /// </summary>
-    public partial class RegisterClientView : Window
+    public partial class UserView : Window
     {
-        public RegisterClientView()
+        public UserView()
         {
             InitializeComponent();
         }
-
         private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -38,12 +38,23 @@ namespace APPVETERINARIA.View
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-                Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtUser.Text) ||
+            string.IsNullOrWhiteSpace(txtPass.Password) ||
+            string.IsNullOrWhiteSpace(txtPassConfirm.Password))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            LoginView loginView = new LoginView();
 
+            loginView.Show();
+
+            this.Close();
         }
 
         private void TextBlock_MouseDown(object sender, RoutedEventArgs e)
@@ -51,7 +62,7 @@ namespace APPVETERINARIA.View
             LoginView loginView = new LoginView();
 
             loginView.Show();
-            
+
             this.Close();
         }
     }

@@ -11,19 +11,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using APPCENTROM.Views;
 using APPVETERINARIA.Views;
 
 namespace APPVETERINARIA.View
 {
     /// <summary>
-    /// Lógica de interacción para RegisterEmployeView.xaml
+    /// Lógica de interacción para RegisterView.xaml
     /// </summary>
-    public partial class RegisterEmployeView : Window
+    public partial class RegisterView : Window
     {
-        public RegisterEmployeView()
+        public RegisterView()
         {
             InitializeComponent();
         }
+
         private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -37,12 +39,26 @@ namespace APPVETERINARIA.View
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+                Application.Current.Shutdown();
         }
 
-        private void BtnRegister_Click(object sender, RoutedEventArgs e)
+        private void BtnContinue_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtName.Text) ||
+            string.IsNullOrWhiteSpace(txtSecondName.Text) ||
+            string.IsNullOrWhiteSpace(txtIDnumber.Text) ||
+            string.IsNullOrWhiteSpace(txtAddres.Text) ||
+            string.IsNullOrWhiteSpace(txtPhone.Text) ||
+            string.IsNullOrWhiteSpace(txtMail.Text))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            UserView UserView = new UserView();
 
+            UserView.Show();
+
+            this.Close();
         }
 
         private void TextBlock_MouseDown(object sender, RoutedEventArgs e)
@@ -50,13 +66,8 @@ namespace APPVETERINARIA.View
             LoginView loginView = new LoginView();
 
             loginView.Show();
-
+            
             this.Close();
-        }
-
-        private void TxtName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

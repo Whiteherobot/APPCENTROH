@@ -1,11 +1,11 @@
-﻿<Window x:Class="APPVETERINARIA.View.RegisterClientView"
+﻿<Window x:Class="APPVETERINARIA.View.RegisterView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:APPVETERINARIA.View"
         mc:Ignorable="d"
-        Title="RegisterClientView" Height="700" Width="800"
+        Title="RegisterView" Height="700" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -52,7 +52,7 @@
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="REGISTER CLIENTS"
+                    <TextBlock Text="REGISTER"
                        Foreground="DarkGray"
                        FontSize="10"
                        FontFamily="Montserrat"
@@ -130,10 +130,10 @@
                 <StackPanel Width="250"
                             Grid.Row="2"
                             Orientation="Vertical"
-                            Margin="0,0,0,0">
-                    <Image Source="\Images\Zyro-image.png"
+                            Margin="0,60,0,0">
+                    <Image Source="\Images\medical-report_4290015.png"
                            Width="100" Height="50"/>
-                    <TextBlock Text="Registro Clientes"
+                    <TextBlock Text="Registro"
                                Foreground="White"
                                FontSize="25"
                                FontWeight="Medium"
@@ -284,35 +284,9 @@
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               Margin="0,6,0,0"/>   
-
-                    <TextBox x:Name="txtMail"
-                             FontSize="13"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"
-                             Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
-                             BorderThickness="0,0,0,1"
-                             Height="24"
-                             VerticalContentAlignment="Center"
-                             Margin="0,5,0,0"
-                             Padding="20,0,0,0">    
-                        <TextBox.Background>
-                            <ImageBrush ImageSource="\Images\user-icon.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/> 
-                        </TextBox.Background>
-                    </TextBox>
-
-                    <TextBlock Text="Nombre de Usuario"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
                                Margin="0,6,0,0"/>
 
-                    <TextBox x:Name="txtUser"
+                    <TextBox x:Name="txtMail"
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"
@@ -331,68 +305,16 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Contraseña"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Margin="0,15,0,0"/>
-
-                    <PasswordBox x:Name="txtPass"
-                                 FontSize="13"
-                                 FontWeight="Medium"
-                                 FontFamily="Montserrat"
-                                 Foreground="White"
-                                 CaretBrush="LightGray"
-                                 BorderBrush="DarkGray"
-                                 BorderThickness="0,0,0,1"
-                                 Height="28"
-                                 VerticalContentAlignment="Center"
-                                 Margin="0,5,0,0"
-                                 Padding="20,0,0,0">    
-                        <PasswordBox.Background>
-                            <ImageBrush ImageSource="\Images\key-icon.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/>
-                        </PasswordBox.Background>
-                    </PasswordBox>
-
-                    <TextBlock Text="Confirmar Contraseña"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Margin="0,15,0,0"/>
-
-                    <PasswordBox x:Name="txtPassConfirm"
-                                 FontSize="13"
-                                 FontWeight="Medium"
-                                 FontFamily="Montserrat"
-                                 Foreground="White"
-                                 CaretBrush="LightGray"
-                                 BorderBrush="DarkGray"
-                                 BorderThickness="0,0,0,1"
-                                 Height="28"
-                                 VerticalContentAlignment="Center"
-                                 Margin="0,5,0,0"
-                                 Padding="20,0,0,0">    
-                        <PasswordBox.Background>
-                            <ImageBrush ImageSource="\Images\key-icon.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/>
-                        </PasswordBox.Background>
-                    </PasswordBox>
-
-                    <Button x:Name="btnRegister"
+                    <Button x:Name="btnContinue"
                                     BorderThickness="0"
-                                    Content="Register"
+                                    Content="Continuar"
                                     Foreground="White"
-                                    FontSize="12"
+                                    FontSize="14"
                                     FontFamily="Montserrat"
                                     Cursor="Hand"
                                     Grid.Column="2"
                                     Margin="0,10,0,0"
-                                    Click="BtnRegister_Click">
+                                    Click="BtnContinue_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#462AD8"/>
