@@ -1,10 +1,10 @@
-﻿<Window x:Class="APPVETERINARIA.Views.LoginView"
+﻿<Window x:Class="APPCENTROH.Views.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:APPVETERINARIA.Views"
-        xmlns:viewModel="clr-namespace:APPVETERINARIA.ViewModels" xmlns:customcontrols="clr-namespace:APPVETERINARIA.CustomControls"
+        xmlns:local="clr-namespace:APPCENTROH.Views"
+        xmlns:viewModel="clr-namespace:APPCENTROH.ViewModels" xmlns:customcontrols="clr-namespace:APPCENTROH.CustomControls"
         mc:Ignorable="d"
         Title="LoginView" Height="550" Width="800"
         WindowStyle="None"
@@ -202,9 +202,10 @@
                                FontFamily="Montserrat"                             
                                Margin="0,15,0,0"/>
 
-                    <customcontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                        Height="28"                            
-                                                        Margin="0,5,0,0">
+                    <customcontrols:BindablePasswordBox 
+                        Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Height="28"                            
+                        Margin="0,5,0,0">
                     </customcontrols:BindablePasswordBox>
 
                     <TextBlock Text="{Binding ErrorMessage}"

@@ -1,4 +1,4 @@
-﻿using APPVETERINARIA.View;
+﻿using APPCENTROH.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_LoginForm.Models;
 
-namespace APPVETERINARIA.Views
+namespace APPCENTROH.Views
 {
     /// <summary>
     /// Interaction logic for LoginView.xaml

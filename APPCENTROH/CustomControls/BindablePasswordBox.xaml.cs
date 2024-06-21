@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace APPVETERINARIA.CustomControls
+namespace APPCENTROH.CustomControls
 {
     /// <summary>
     /// Interaction logic for BindablePasswordBox.xaml

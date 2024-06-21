@@ -1,4 +1,4 @@
-﻿using APPVETERINARIA.Models;
+﻿using APPCENTROH.Models;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APPVETERINARIA.Repositories
+namespace APPCENTROH.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {

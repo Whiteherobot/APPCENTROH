@@ -5,9 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using APPVETERINARIA.Views;
+using APPCENTROH.Views;
 
-namespace APPVETERINARIA
+namespace APPCENTROH
 {
     /// <summary>
     /// Interaction logic for App.xaml

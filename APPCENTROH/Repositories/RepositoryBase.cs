@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Client;
 using System.Configuration;
 
-namespace APPVETERINARIA.Repositories
+namespace APPCENTROH.Repositories
 {
     public abstract class RepositoryBase
     {

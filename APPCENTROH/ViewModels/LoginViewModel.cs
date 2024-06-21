@@ -8,10 +8,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using APPVETERINARIA.Models;
-using APPVETERINARIA.Repositories;
+using APPCENTROH.Models;
+using APPCENTROH.Repositories;
 
-namespace APPVETERINARIA.ViewModels
+namespace APPCENTROH.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {

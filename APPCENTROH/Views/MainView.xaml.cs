@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace APPVETERINARIA.Views
+namespace APPCENTROH.Views
 {
     /// <summary>
     /// Interaction logic for MainWindowView.xaml

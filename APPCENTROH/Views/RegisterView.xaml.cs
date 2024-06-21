@@ -12,9 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using APPCENTROM.Views;
-using APPVETERINARIA.Views;
+using APPCENTROH.Views;
 
-namespace APPVETERINARIA.View
+namespace APPCENTROH.View
 {
     /// <summary>
     /// Lógica de interacción para RegisterView.xaml
