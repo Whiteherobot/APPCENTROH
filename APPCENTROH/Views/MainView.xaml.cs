@@ -28,11 +28,6 @@ namespace APPCENTROH.Views
             txtUserName.Text = $"{user.Name} {user.LastName}"; // Asigna el nombre del usuario al TextBlock
         }
 
-        //public MainView(UserModel user) : this()
-        //{
-            // Aquí puedes inicializar los controles de la ventana principal utilizando los datos del usuario
-        //}
-
         private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
