@@ -144,10 +144,8 @@
                 </Grid>
 
                 <Grid Grid.Row="2">
-                <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
-                FontSize="30"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"/>
+                
+                    <TextBlock x:Name="txtUserName" HorizontalAlignment="Center" VerticalAlignment="Center" Width="308" Height="100"/>
                 </Grid>
             </Grid>
         </Border>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using APPCENTROM.Views;
 using APPCENTROH.Views;
+using APPCENTROM.ViewModels;
 
 namespace APPCENTROH.View
 {
@@ -21,6 +22,7 @@ namespace APPCENTROH.View
     /// </summary>
     public partial class RegisterView : Window
     {
+        public RegisterViewModel RegisterViewModel { get; private set; }
         public RegisterView()
         {
             InitializeComponent();
@@ -39,7 +41,8 @@ namespace APPCENTROH.View
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-                Application.Current.Shutdown();
+               // Application.Current.Shutdown();
+               this.Close();
         }
 
         private void BtnContinue_Click(object sender, RoutedEventArgs e)
@@ -54,12 +57,24 @@ namespace APPCENTROH.View
                 MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            UserView UserView = new UserView();
 
-            UserView.Show();
+            RegisterViewModel = new RegisterViewModel
+            {
+                nombre = txtName.Text,
+                apellido = txtSecondName.Text,
+                cedula = txtIDnumber.Text,
+                direccion = txtAddres.Text,
+                telefono = txtPhone.Text,
+                Email = txtMail.Text
+            };
+
+            UserView userView = new UserView(RegisterViewModel);
+
+            userView.Show();
 
             this.Close();
         }
+
 
         private void TextBlock_MouseDown(object sender, RoutedEventArgs e)
         {

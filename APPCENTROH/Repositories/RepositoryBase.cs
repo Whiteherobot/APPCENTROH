@@ -14,7 +14,7 @@ namespace APPCENTROH.Repositories
 
         public RepositoryBase()
         {
-            _connectionString = "Data Source=localhost:1521/XE; User ID=Michi; Password=123456; ";
+            _connectionString = "Data Source=localhost:1521/XE; User ID=CentroMedico; Password=12345E;";
         }
 
         protected OracleConnection GetConnection()

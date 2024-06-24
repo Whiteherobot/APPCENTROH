@@ -1,4 +1,6 @@
-﻿using APPCENTROH.Views;
+﻿using APPCENTROH.Repositories;
+using APPCENTROH.Views;
+using APPCENTROM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using static APPCENTROH.View.RegisterView;
 
 namespace APPCENTROM.Views
 {
@@ -21,9 +24,12 @@ namespace APPCENTROM.Views
     /// </summary>
     public partial class UserView : Window
     {
-        public UserView()
+        private RegisterViewModel registerViewModel;
+
+        public UserView(RegisterViewModel data)
         {
             InitializeComponent();
+            registerViewModel = data;
         }
         private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -50,7 +56,20 @@ namespace APPCENTROM.Views
                 MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (txtPass.Password != txtPassConfirm.Password)
+            {
+                MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            UserRepository userRepository = new UserRepository();
+            userRepository.InsertData(registerViewModel, txtUser.Text, txtPass.Password);
+
+            // Mostrar mensaje de éxito y cerrar las ventanas
+            MessageBox.Show("Registro exitoso", "Éxito");
+
             LoginView loginView = new LoginView();
+
 
             loginView.Show();
 
@@ -59,11 +78,11 @@ namespace APPCENTROM.Views
 
         private void TextBlock_MouseDown(object sender, RoutedEventArgs e)
         {
-            LoginView loginView = new LoginView();
+            // LoginView loginView = new LoginView();
 
-            loginView.Show();
+            // loginView.Show();
 
-            this.Close();
+            // this.Close();
         }
     }
 }

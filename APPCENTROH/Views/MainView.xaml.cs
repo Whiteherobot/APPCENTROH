@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APPCENTROH.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,18 @@ namespace APPCENTROH.Views
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView()
+        private UserModel user;
+        public MainView(UserModel user)
         {
             InitializeComponent();
+            this.user = user;
+            txtUserName.Text = $"{user.Name} {user.LastName}"; // Asigna el nombre del usuario al TextBlock
         }
+
+        //public MainView(UserModel user) : this()
+        //{
+            // Aquí puedes inicializar los controles de la ventana principal utilizando los datos del usuario
+        //}
 
         private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
