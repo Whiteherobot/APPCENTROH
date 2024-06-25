@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:APPCENTROM.Views"
         mc:Ignorable="d"
         Title="CustomerView" Height="450" Width="800">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>

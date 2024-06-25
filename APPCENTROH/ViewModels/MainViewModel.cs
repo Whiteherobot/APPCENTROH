@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using APPCENTROH.Models;
+﻿using APPCENTROH.Models;
 using APPCENTROH.Repositories;
 using APPCENTROM.ViewModels;
 using FontAwesome.Sharp;
+using System.Threading;
+using System.Windows.Input;
 
 namespace APPCENTROH.ViewModels
 {

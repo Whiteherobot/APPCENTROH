@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using APPCENTROM.Views;
-using APPCENTROH.Views;
+﻿using APPCENTROH.Views;
 using APPCENTROM.ViewModels;
+using APPCENTROM.Views;
+using System.Windows;
+using System.Windows.Input;
 
 namespace APPCENTROH.View
 {
@@ -41,8 +30,8 @@ namespace APPCENTROH.View
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-               // Application.Current.Shutdown();
-               this.Close();
+            // Application.Current.Shutdown();
+            this.Close();
         }
 
         private void BtnContinue_Click(object sender, RoutedEventArgs e)
@@ -81,7 +70,7 @@ namespace APPCENTROH.View
             LoginView loginView = new LoginView();
 
             loginView.Show();
-            
+
             this.Close();
         }
     }

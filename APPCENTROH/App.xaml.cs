@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using APPCENTROH.Views;
 using System.Windows;
-using APPCENTROH.Views;
 
 namespace APPCENTROH
 {
@@ -22,8 +16,8 @@ namespace APPCENTROH
             //{
             //    if (loginView.IsVisible == false && loginView.IsLoaded)
             //    {
-                    //var mainView = new MainView();
-                    //mainView.Show();
+            //var mainView = new MainView();
+            //mainView.Show();
             //        loginView.Close();
             //    }
             //};

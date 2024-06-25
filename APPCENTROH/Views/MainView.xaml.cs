@@ -1,19 +1,9 @@
 ﻿using APPCENTROH.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace APPCENTROH.Views
 {
@@ -27,7 +17,7 @@ namespace APPCENTROH.Views
         {
             InitializeComponent();
             //this.user = user;
-           // txtUserName.Text = $"{user.Name} {user.LastName}"; // Asigna el nombre del usuario al TextBlock
+            // txtUserName.Text = $"{user.Name} {user.LastName}"; // Asigna el nombre del usuario al TextBlock
         }
 
         [DllImport("user32.dll")]
@@ -36,7 +26,7 @@ namespace APPCENTROH.Views
         {
             WindowInteropHelper helper = new WindowInteropHelper(this);
             SendMessage(helper.Handle, 161, 2, 0);
-            
+
         }
         private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -66,7 +56,7 @@ namespace APPCENTROH.Views
         {
             Application.Current.Shutdown();
         }
-          private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();

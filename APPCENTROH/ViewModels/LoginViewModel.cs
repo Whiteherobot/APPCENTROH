@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using APPCENTROH.Models;
+using APPCENTROH.Repositories;
+using System;
 using System.Net;
 using System.Security;
 using System.Security.Principal;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using APPCENTROH.Models;
-using APPCENTROH.Repositories;
 
 namespace APPCENTROH.ViewModels
 {
