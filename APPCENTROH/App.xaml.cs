@@ -14,12 +14,12 @@ namespace APPCENTROH
             loginView.Show();
             //loginView.IsVisibleChanged += (s, ev) =>
             //{
-            //    if (loginView.IsVisible == false && loginView.IsLoaded)
-            //    {
-            //var mainView = new MainView();
+             //   if (loginView.IsVisible == false && loginView.IsLoaded)
+               // {
+           // var mainView = new MainView();
             //mainView.Show();
-            //        loginView.Close();
-            //    }
+              //      loginView.Close();
+             //  }
             //};
 
         }

@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:APPCENTROH.ViewModels"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="MainWindowView" Height="450" Width="800"
+        Title="MainWindowView" Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -18,7 +18,7 @@
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-    
+
    
 
     <Border CornerRadius="10"                    
@@ -65,36 +65,48 @@
 
                     <!--Menu Buttons-->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color1}"
+                         Tag="{StaticResource color1}"
+                         IsChecked="True"
+                         Click="RbShowHomeView_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
+                    <TextBlock Text="Inicio" Style="{StaticResource menuButtonText}"/>
+                </StackPanel>
+            </RadioButton>
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color2}"
                                  IsChecked="True"
-                                 Command="{Binding ShowHomeViewCommand}">
+                                 Click="RbShowHomeView_Click1">
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
+                            <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Pacientes" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 Command="{Binding ShowCustomerViewCommand}">
+                                 Tag="{StaticResource color3}"
+                                 IsChecked="True"
+                                 Click="RbShowHomeView_Click2">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Administracion" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 Command="{Binding ShowCustomerViewCommand}">
+                                 Tag="{StaticResource color4}"
+                                 IsChecked="True"
+                                 Click="RbShowHomeView_Click3">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Citas" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 Command="{Binding ShowCustomerViewCommand}">
+                                 Tag="{StaticResource color5}"
+                                 IsChecked="True"
+                                 Click="RbShowHomeView_Click4">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Facturas" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                 </StackPanel>
@@ -163,8 +175,8 @@
                                           Foreground="{StaticResource titleColor2}"
                                           Margin="35,0,10,0"/>
 
-                            <TextBlock Text="{Binding Caption}"
-                                       Foreground="{StaticResource titleColor2}"
+                            <TextBlock Text="Centro Medico"
+                                       Foreground="{StaticResource titleColor1}"
                                        FontSize="16"
                                        FontFamily="Montserrat"
                                        FontWeight="Medium"
@@ -183,18 +195,17 @@
                                               Height="12" Width="12"
                                               Style="{StaticResource iconButtonIcon}"/>
                             </Button>
-                            <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
+                            <TextBlock x:Name="txtNameUser"
                                        Foreground="{StaticResource titleColor3}"
                                        FontFamily="Montserrat"
                                        FontSize="12"
                                        VerticalAlignment="Center"/>
                             <Ellipse Height="35" Width="35"
-                                     Stroke="{StaticResource color2}"
+                                     Stroke="{StaticResource color4}"
                                      StrokeThickness="2"
-                                     Margin="10,0,10,0">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/user-icon.png"/>
-                                </Ellipse.Fill>
+                                     Margin="10,0,10,0"
+                                     Fill="Black">
+                                
                             </Ellipse>
                             <Button Style="{StaticResource iconButton}"
                                     Tag="{StaticResource color3}">
@@ -212,9 +223,12 @@
 
                     </Grid>
                     <!--Content section / Child views-->
-                    <ContentControl Content="{Binding CurrentChildView}"
-                                    Grid.Row="2"
-                                    Margin="25"/>
+                    <Frame x:Name="mainFrame"
+                           Grid.Row="2"
+                           Margin="25"
+                           NavigationUIVisibility="Hidden"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"/>
                 </Grid>
             </Border>
         </Grid>

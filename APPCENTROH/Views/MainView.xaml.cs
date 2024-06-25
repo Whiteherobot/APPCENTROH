@@ -1,4 +1,5 @@
 ﻿using APPCENTROH.Models;
+using APPCENTROM.Views;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -16,8 +17,8 @@ namespace APPCENTROH.Views
         public MainView(UserModel user)
         {
             InitializeComponent();
-            //this.user = user;
-            // txtUserName.Text = $"{user.Name} {user.LastName}"; // Asigna el nombre del usuario al TextBlock
+            this.user = user;
+            txtNameUser.Text = $"{user.Name} {user.LastName}"; // Asigna el nombre del usuario al TextBlock
         }
 
         [DllImport("user32.dll")]
@@ -60,6 +61,43 @@ namespace APPCENTROH.Views
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
+        }
+        private void RbShowHomeView_Click(object sender, RoutedEventArgs e)
+        {
+            HomeView homeView = new HomeView();
+
+            mainFrame.Navigate(new HomeView());
+
+        }
+        
+        private void RbShowHomeView_Click1(object sender, RoutedEventArgs e)
+        {
+            CustomerView customerView = new CustomerView();
+
+            mainFrame.Navigate(new CustomerView());
+
+        }
+
+        private void RbShowHomeView_Click2(object sender, RoutedEventArgs e)
+        {
+
+            mainFrame.Navigate(new PACA());
+
+        }
+
+        private void RbShowHomeView_Click3(object sender, RoutedEventArgs e)
+        {
+            
+
+            mainFrame.Navigate(new AppointmentsView());
+
+        }
+
+        private void RbShowHomeView_Click4(object sender, RoutedEventArgs e)
+        {
+
+            mainFrame.Navigate(new InvoiceView());
+
         }
     }
 }
