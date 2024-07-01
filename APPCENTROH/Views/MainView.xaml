@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:APPCENTROH.ViewModels"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="MainWindowView" Height="550" Width="800"
+        Title="MainWindowView" Height="650" Width="950"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -70,7 +70,7 @@
                          Click="RbShowHomeView_Click">
                 <StackPanel Orientation="Horizontal">
                     <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
-                    <TextBlock Text="Inicio" Style="{StaticResource menuButtonText}"/>
+                    <TextBlock Text="Administracion Usuarios" Style="{StaticResource menuButtonText}"/>
                 </StackPanel>
             </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
@@ -79,25 +79,17 @@
                                  Click="RbShowHomeView_Click1">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Pacientes" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Registro Pacientes" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}"
-                                 IsChecked="True"
-                                 Click="RbShowHomeView_Click2">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Administracion" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                    
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color4}"
                                  IsChecked="True"
                                  Click="RbShowHomeView_Click3">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Citas" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Gestion Citas" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
@@ -106,7 +98,16 @@
                                  Click="RbShowHomeView_Click4">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Facturas" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Facturacion" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color6}"
+                                 IsChecked="True"
+                                 Click="RbShowHomeView_Click5">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Administracion Servicios" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                 </StackPanel>
@@ -168,14 +169,16 @@
                         <!--Caption-->
                         <StackPanel Grid.Column="0"
                                     Orientation="Horizontal"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    x:Name="mainStackPanel">
                             <fa:IconImage Icon="{Binding Icon}"
                                           Height="20"
                                           Width="20"
                                           Foreground="{StaticResource titleColor2}"
                                           Margin="35,0,10,0"/>
 
-                            <TextBlock Text="Centro Medico"
+                            <TextBlock Text="Bienvenido"
+                                       
                                        Foreground="{StaticResource titleColor1}"
                                        FontSize="16"
                                        FontFamily="Montserrat"

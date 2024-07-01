@@ -1,10 +1,13 @@
 ﻿using APPCENTROH.Models;
 using APPCENTROM.Views;
+using FontAwesome.Sharp;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace APPCENTROH.Views
 {
@@ -64,10 +67,8 @@ namespace APPCENTROH.Views
         }
         private void RbShowHomeView_Click(object sender, RoutedEventArgs e)
         {
-            HomeView homeView = new HomeView();
-
-            mainFrame.Navigate(new HomeView());
-
+            mainFrame.Navigate(new EmployeView());
+            ShowText_Click(sender, e);
         }
         
         private void RbShowHomeView_Click1(object sender, RoutedEventArgs e)
@@ -75,6 +76,7 @@ namespace APPCENTROH.Views
             CustomerView customerView = new CustomerView();
 
             mainFrame.Navigate(new CustomerView());
+            ShowText_Click(sender, e);
 
         }
 
@@ -82,6 +84,7 @@ namespace APPCENTROH.Views
         {
 
             mainFrame.Navigate(new PACA());
+            ShowText_Click(sender, e);
 
         }
 
@@ -89,7 +92,8 @@ namespace APPCENTROH.Views
         {
             
 
-            mainFrame.Navigate(new AppointmentsView());
+            mainFrame.Navigate(new DateView());
+            ShowText_Click(sender, e);
 
         }
 
@@ -97,7 +101,82 @@ namespace APPCENTROH.Views
         {
 
             mainFrame.Navigate(new InvoiceView());
+            ShowText_Click(sender, e);
+        }
 
+        private void RbShowHomeView_Click5(object sender, RoutedEventArgs e)
+        {
+
+            mainFrame.Navigate(new ServiceView());
+            ShowText_Click(sender, e);
+
+        }
+
+        private void ShowText_Click(object sender, RoutedEventArgs e)
+        {
+            // Limpia el StackPanel
+            mainStackPanel.Children.Clear();
+
+            // Obtén el RadioButton que lanzó el evento
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton != null)
+            {
+                // Accede directamente al contenido del RadioButton
+                object content = radioButton.Content;
+
+                // Verifica que el contenido no sea nulo y sea de tipo TextBlock
+                if (content is TextBlock textBlock)
+                {
+                    // Crea un nuevo TextBlock con el texto del RadioButton
+                    TextBlock newTextBlock = new TextBlock
+                    {
+                        Text = textBlock.Text,
+                        FontSize = 18,
+                        FontWeight = FontWeights.Medium,
+                        Margin = new Thickness(10)
+                    };
+
+                    // Agrega el nuevo TextBlock al StackPanel
+                    mainStackPanel.Children.Add(newTextBlock);
+                }
+                else if (content is StackPanel stackPanel)
+                {
+                    // En caso de tener más elementos dentro del StackPanel
+                    foreach (var child in stackPanel.Children)
+                    {
+                        if (child is IconImage iconImage)
+                        {
+                            // Crea un nuevo IconImage con el icono del RadioButton
+                            IconImage newIconImage = new IconImage
+                            {
+                                Icon = iconImage.Icon,
+                                Height = 20,
+                                Width = 20,
+                                Foreground = Brushes.White, // Cambiar según necesites
+                                Margin = new Thickness(10)
+                            };
+
+                            // Agrega el nuevo IconImage al StackPanel
+                            mainStackPanel.Children.Add(newIconImage);
+                        }
+                        else if (child is TextBlock textBlockInside)
+                        {
+                            // Crea un nuevo TextBlock con el texto del RadioButton
+                            TextBlock newTextBlock = new TextBlock
+                            {
+                                Text = textBlockInside.Text,
+                                FontSize = 16,
+                                FontWeight = FontWeights.Medium,
+                                Foreground = Brushes.White,
+                                Margin = new Thickness(9)
+                            };
+
+                            // Agrega el nuevo TextBlock al StackPanel
+                            mainStackPanel.Children.Add(newTextBlock);
+                        }
+                    }
+                }
+            }
         }
     }
 }

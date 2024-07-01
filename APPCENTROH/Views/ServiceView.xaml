@@ -1,14 +1,13 @@
-﻿<Page x:Class="APPCENTROM.Views.CustomerView"
+﻿<Page x:Class="APPCENTROM.Views.ServiceView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:APPCENTROM.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CustomerView"
-      ShowsNavigationUI="False">
+      Title="ServiceView">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,32 +24,32 @@
                 <ColumnDefinition Width="110"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Top"
-                        Grid.Column="0">
+                     VerticalAlignment="Top"
+                     Grid.Column="0">
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
                 <TextBox Text="Search..."   
-                    FontSize="13"
-                         Height="24"
-                           Width="225"
-                           Background="Transparent"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"                            
-                             Foreground="{StaticResource plainTextColor3}"
-                             CaretBrush="{StaticResource plainTextColor3}"
-                             BorderBrush="{StaticResource plainTextColor3}"
-                             BorderThickness="0,0,0,1"                             
-                             VerticalContentAlignment="Center"
-                             Margin="5,5,0,0"></TextBox>
+                 FontSize="13"
+                      Height="24"
+                        Width="225"
+                        Background="Transparent"
+                          FontWeight="Medium"
+                          FontFamily="Montserrat"                            
+                          Foreground="{StaticResource plainTextColor3}"
+                          CaretBrush="{StaticResource plainTextColor3}"
+                          BorderBrush="{StaticResource plainTextColor3}"
+                          BorderThickness="0,0,0,1"                             
+                          VerticalContentAlignment="Center"
+                          Margin="5,5,0,0"></TextBox>
             </StackPanel>
             <Button Grid.Column="1"
-                            Command="{Binding LoginCommand}"                            
-                            Content="Search"                            
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Foreground="White"
-                    VerticalAlignment="Top">
+                         Command="{Binding LoginCommand}"                            
+                         Content="Search"                            
+                         FontSize="12"
+                         FontFamily="Montserrat"
+                         Cursor="Hand"
+                         BorderThickness="0"
+                         Foreground="White"
+                 VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#773DFF"/>
@@ -58,10 +57,10 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Height="30"
-                                                    CornerRadius="15"
-                                                    Background="{TemplateBinding Background}">
+                                                 CornerRadius="15"
+                                                 Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center"
-                                                                      HorizontalAlignment="Center"/>
+                                                          HorizontalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -75,15 +74,14 @@
                 </Button.Style>
             </Button>
             <Button Grid.Column="2"
-                 Command="{Binding LoginCommand}"                            
-                 Content="Add"  
-                 Click="BtnAdd_Click" 
-                 FontSize="12"
-                 FontFamily="Montserrat"
-                 Cursor="Hand"
-                 BorderThickness="0"
-                 Foreground="White"
-                 VerticalAlignment="Top">
+                    Click="BtnAdd_Click"                           
+                    Content="Add"                            
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="White"
+                    VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#773DFF"/>
@@ -91,10 +89,10 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Height="30"
-                                         CornerRadius="15"
-                                         Background="{TemplateBinding Background}">
+                                      CornerRadius="15"
+                                      Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center"
-                                                           HorizontalAlignment="Center"/>
+                                               HorizontalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -108,14 +106,14 @@
                 </Button.Style>
             </Button>
             <Button Grid.Column="3"
-                     Command="{Binding LoginCommand}"                            
-                     Content="Save"                            
-                     FontSize="12"
-                     FontFamily="Montserrat"
-                     Cursor="Hand"
-                     BorderThickness="0"
-                     Foreground="White"
-                     VerticalAlignment="Top">
+         Command="{Binding LoginCommand}"                            
+         Content="Save"                            
+         FontSize="12"
+         FontFamily="Montserrat"
+         Cursor="Hand"
+         BorderThickness="0"
+         Foreground="White"
+         VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#773DFF"/>
@@ -123,10 +121,10 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Height="30"
-                             CornerRadius="15"
-                             Background="{TemplateBinding Background}">
+                 CornerRadius="15"
+                 Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -140,14 +138,14 @@
                 </Button.Style>
             </Button>
             <Button Grid.Column="4"
-                             Command="{Binding LoginCommand}"                            
-                             Content="Update"                            
-                             FontSize="12"
-                             FontFamily="Montserrat"
-                             Cursor="Hand"
-                             BorderThickness="0"
-                             Foreground="White"
-                             VerticalAlignment="Top">
+                 Command="{Binding LoginCommand}"                            
+                 Content="Update"                            
+                 FontSize="12"
+                 FontFamily="Montserrat"
+                 Cursor="Hand"
+                 BorderThickness="0"
+                 Foreground="White"
+                 VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#773DFF"/>
@@ -155,10 +153,10 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Height="30"
-                             CornerRadius="15"
-                             Background="{TemplateBinding Background}">
+                 CornerRadius="15"
+                 Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -172,14 +170,14 @@
                 </Button.Style>
             </Button>
             <Button Grid.Column="5"
-                     Command="{Binding LoginCommand}"                            
-                     Content="Delete"                            
-                     FontSize="12"
-                     FontFamily="Montserrat"
-                     Cursor="Hand"
-                     BorderThickness="0"
-                     Foreground="White"
-                     VerticalAlignment="Top">
+         Command="{Binding LoginCommand}"                            
+         Content="Delete"                            
+         FontSize="12"
+         FontFamily="Montserrat"
+         Cursor="Hand"
+         BorderThickness="0"
+         Foreground="White"
+         VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#773DFF"/>
@@ -187,10 +185,10 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Height="30"
-                             CornerRadius="15"
-                             Background="{TemplateBinding Background}">
+                 CornerRadius="15"
+                 Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -206,12 +204,12 @@
 
         </Grid>
         <Border Grid.Row="1"
-                Background="#200F53"
-                CornerRadius="10" 
-                Padding="10">
+             Background="#200F53"
+             CornerRadius="10" 
+             Padding="10">
             <DataGrid ColumnWidth="*"
-                  Background="#200F53"
-                  BorderThickness="0">
+               Background="#200F53"
+               BorderThickness="0">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>
@@ -223,11 +221,9 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat=""/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Address"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Phone"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Email"/>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Name"/>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Price"/>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Iva"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

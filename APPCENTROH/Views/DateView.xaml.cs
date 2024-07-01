@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace APPCENTROM.Views
 {
     /// <summary>
-    /// Interaction logic for CustomerView.xaml
+    /// Interaction logic for DateView.xaml
     /// </summary>
-    public partial class CustomerView : Page
+    public partial class DateView : Page
     {
-        public CustomerView()
+        public DateView()
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace APPCENTROM.Views
             if (mainView != null)
             {
                 // Navegar a la nueva página dentro del frame de la ventana principal
-                mainView.mainFrame.Navigate(new AddPatient());
+                mainView.mainFrame.Navigate(new AppointmentsView());
             }
 
         }

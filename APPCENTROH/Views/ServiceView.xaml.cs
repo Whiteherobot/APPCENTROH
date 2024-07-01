@@ -17,14 +17,15 @@ using System.Windows.Shapes;
 namespace APPCENTROM.Views
 {
     /// <summary>
-    /// Interaction logic for CustomerView.xaml
+    /// Interaction logic for ServiceView.xaml
     /// </summary>
-    public partial class CustomerView : Page
+    public partial class ServiceView : Page
     {
-        public CustomerView()
+        public ServiceView()
         {
             InitializeComponent();
         }
+
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             MainView mainView = Application.Current.Windows.OfType<MainView>().FirstOrDefault();
@@ -32,7 +33,7 @@ namespace APPCENTROM.Views
             if (mainView != null)
             {
                 // Navegar a la nueva página dentro del frame de la ventana principal
-                mainView.mainFrame.Navigate(new AddPatient());
+                mainView.mainFrame.Navigate(new AddService());
             }
 
         }
