@@ -75,6 +75,200 @@ namespace APPCENTROH.Repositories
             return user;
         }
 
+        public List<UserModel> GetAllUsers()
+        {
+            var users = new List<UserModel>();
+
+            using (var connection = GetConnection())
+            using (var command = new OracleCommand("SELECT PER_ID, PER_CEDULA, PER_NOMBRE, PER_APELLIDO, PER_DIRECCION, PER_TELEFONO, PER_EMAIL FROM IDM_PERSONAS ORDER BY PER_ID", connection))
+            {
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new UserModel
+                        {
+                            // Corrige los índices y los tipos de datos según la consulta SQL
+                            Id = reader.GetInt32(reader.GetOrdinal("PER_ID")).ToString(),
+                            Cedula= reader.GetString(reader.GetOrdinal("PER_CEDULA")),// Cambia el índice de columna y el tipo de datos según corresponda
+                            Name = reader.GetString(reader.GetOrdinal("PER_NOMBRE")),
+                            LastName = reader.GetString(reader.GetOrdinal("PER_APELLIDO")),
+                            Dirreccion = reader.GetString(reader.GetOrdinal("PER_DIRECCION")),
+                            Telefono = reader.GetString(reader.GetOrdinal("PER_TELEFONO")),
+                            Email = reader.GetString(reader.GetOrdinal("PER_EMAIL"))
+                            // Si `Permiso` no es una columna en la consulta, elimínalo del modelo o ajusta la consulta para incluirlo
+                        });
+                    }
+                }
+            }
+
+            return users;
+        }
+
+        public List<UserModel> GetAllUsers1()
+        {
+            var users = new List<UserModel>();
+
+            using (var connection = GetConnection())
+            using (var command = new OracleCommand(@"SELECT p.PER_ID, p.PER_CEDULA, p.PER_NOMBRE, p.PER_APELLIDO, p.PER_DIRECCION, p.PER_TELEFONO, p.PER_EMAIL, pa.PAC_ID
+                                             FROM IDM_PERSONAS p
+                                             LEFT JOIN IDM_PACIENTES pa ON p.PER_ID = pa.IDM_PERSONAS_PER_ID
+                                             ORDER BY p.PER_ID", connection))
+            {
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new UserModel
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("PER_ID")).ToString(),
+                            Cedula = reader.GetString(reader.GetOrdinal("PER_CEDULA")),
+                            Name = reader.GetString(reader.GetOrdinal("PER_NOMBRE")),
+                            LastName = reader.GetString(reader.GetOrdinal("PER_APELLIDO")),
+                            Dirreccion = reader.GetString(reader.GetOrdinal("PER_DIRECCION")),
+                            Telefono = reader.GetString(reader.GetOrdinal("PER_TELEFONO")),
+                            Email = reader.GetString(reader.GetOrdinal("PER_EMAIL")),
+                            Id2 = reader.IsDBNull(reader.GetOrdinal("PAC_ID")) ? null : reader.GetInt32(reader.GetOrdinal("PAC_ID")).ToString()
+                        });
+                    }
+                }
+            }
+
+            return users;
+        }
+
+        public bool DeleteUserAndRelatedRecords(string userId)
+        {
+            if (int.TryParse(userId, out int intUserId))
+            {
+                using (var connection = GetConnection())
+                using (var command = new OracleCommand())
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            command.Connection = connection;
+                            command.Transaction = transaction;
+
+                            // Eliminar registros en IDM_USUARIOS
+                            command.CommandText = @"
+                                                 DELETE FROM IDM_USUARIOS 
+                                                 WHERE USU_ID IN (SELECT IDM_EMPLEADOS_EMP_ID FROM IDM_EMPLEADOS WHERE IDM_EMPLEADOS_EMP_ID = :userId )";
+                            command.Parameters.Clear();
+                            command.Parameters.Add(new OracleParameter(":userId", OracleDbType.Int32) { Value = intUserId });
+                            command.ExecuteNonQuery();
+
+                            // Eliminar registros en IDM_EMPLEADOS
+                            command.CommandText = "DELETE FROM IDM_EMPLEADOS WHERE IDM_PERSONAS_PER_ID = :userId";
+                            command.Parameters.Clear();
+                            command.Parameters.Add(new OracleParameter(":userId", OracleDbType.Int32) { Value = intUserId });
+                            command.ExecuteNonQuery();
+
+                            // Eliminar el registro en IDM_PERSONAS
+                            command.CommandText = "DELETE FROM IDM_PERSONAS WHERE PER_ID = :userId";
+                            command.Parameters.Clear();
+                            command.Parameters.Add(new OracleParameter(":userId", OracleDbType.Int32) { Value = intUserId });
+                            command.ExecuteNonQuery();
+
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            Console.WriteLine("Error al eliminar usuario y registros relacionados: " + ex.Message);
+                            return false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error al convertir userId a int.");
+                return false;
+            }
+        }
+
+        public bool DeleteUserAndRelatedRecords1(string userId)
+        {
+            if (int.TryParse(userId, out int intUserId))
+            {
+                using (var connection = GetConnection())
+                using (var command = new OracleCommand())
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            command.Connection = connection;
+                            command.Transaction = transaction;
+
+                            // Eliminar registros en IDM_PACIENTES
+                            command.CommandText = "DELETE FROM IDM_PACIENTES WHERE IDM_PERSONAS_PER_ID = :userId";
+                            command.Parameters.Clear();
+                            command.Parameters.Add(new OracleParameter(":userId", OracleDbType.Int32) { Value = intUserId });
+                            command.ExecuteNonQuery();
+
+                            // Eliminar el registro en IDM_PERSONAS
+                            command.CommandText = "DELETE FROM IDM_PERSONAS WHERE PER_ID = :userId";
+                            command.Parameters.Clear();
+                            command.Parameters.Add(new OracleParameter(":userId", OracleDbType.Int32) { Value = intUserId });
+                            command.ExecuteNonQuery();
+
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            Console.WriteLine("Error al eliminar usuario y registros relacionados: " + ex.Message);
+                            return false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error al convertir userId a int.");
+                return false;
+            }
+        }
+
+        public List<UserModel> SearchUsersByName(string name)
+        {
+            var users = new List<UserModel>();
+
+            using (var connection = GetConnection())
+            using (var command = new OracleCommand("SELECT PER_ID, PER_NOMBRE, PER_APELLIDO, PER_CEDULA, PER_DIRECCION, PER_TELEFONO, PER_EMAIL FROM IDM_PERSONAS WHERE PER_NOMBRE LIKE :name", connection))
+            {
+                connection.Open();
+                command.Parameters.Add(new OracleParameter(":name", OracleDbType.NVarchar2)).Value = "%" + name + "%";
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new UserModel
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("PER_ID")).ToString(),
+                            Name = reader.GetString(reader.GetOrdinal("PER_NOMBRE")),
+                            LastName = reader.GetString(reader.GetOrdinal("PER_APELLIDO")),
+                            Cedula = reader.GetString(reader.GetOrdinal("PER_CEDULA")),
+                            Dirreccion = reader.GetString(reader.GetOrdinal("PER_DIRECCION")),
+                            Telefono = reader.GetString(reader.GetOrdinal("PER_TELEFONO")),
+                            Email = reader.GetString(reader.GetOrdinal("PER_EMAIL"))
+                        });
+                    }
+                }
+            }
+
+            return users;
+        }
+
         public void InsertData(RegisterViewModel registerViewModel, string username, string password)
         {
             using (var connection = GetConnection())
