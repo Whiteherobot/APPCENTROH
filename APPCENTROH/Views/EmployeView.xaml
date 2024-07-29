@@ -29,6 +29,7 @@
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
                 <TextBox Text="Search..."   
                 FontSize="13"
+                     x:Name="txtSearchName"
                      Height="24"
                        Width="225"
                        Background="Transparent"
@@ -39,11 +40,14 @@
                          BorderBrush="{StaticResource plainTextColor3}"
                          BorderThickness="0,0,0,1"                             
                          VerticalContentAlignment="Center"
-                         Margin="5,5,0,0"></TextBox>
+                         Margin="5,5,0,0"
+                         GotFocus="txtSearchName_GotFocus"
+         ></TextBox>
             </StackPanel>
             <Button Grid.Column="1"
                         Command="{Binding LoginCommand}"                            
-                        Content="Search"                            
+                        Content="Search"  
+                        Click="btnSearch_Click"
                         FontSize="12"
                         FontFamily="Montserrat"
                         Cursor="Hand"
@@ -108,7 +112,8 @@
             </Button>
             <Button Grid.Column="3"
                  Command="{Binding LoginCommand}"                            
-                 Content="Update"                            
+                 Content="Update"   
+                 Click="BtnAdd_Click1" 
                  FontSize="12"
                  FontFamily="Montserrat"
                  Cursor="Hand"
@@ -140,6 +145,7 @@
             </Button>
             <Button Grid.Column="4"                         
                          Content="Delete"                            
+                         Click="BtnAdd_Click2" 
                          FontSize="12"
                          FontFamily="Montserrat"
                          Cursor="Hand"
@@ -172,6 +178,7 @@
             <Button Grid.Column="5"                        
                  Content="Activating"                            
                  FontSize="12"
+                 Click="BtnActivating_Click"
                  FontFamily="Montserrat"
                  Cursor="Hand"
                  BorderThickness="0"
@@ -206,27 +213,19 @@
             Background="#200F53"
             CornerRadius="10" 
             Padding="10">
-            <DataGrid ColumnWidth="*"
-              Background="#200F53"
-              BorderThickness="0">
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Foreground" Value="#BCBEE0"/>
-                        <Setter Property="Padding" Value="10,0,0,10"/>
-                        <Setter Property="FontFamily" Value="Montserrat"/>
-                        <Setter Property="FontSize" Value="15"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat=""/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Estate"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="User"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Rol"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            
+
+                <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" Width="*" />
+                        <DataGridTextColumn Header="Usuario" Binding="{Binding Username}" Width="*" />
+                        <DataGridTextColumn Header="Contraseña" Binding="{Binding Password}" Width="*" />
+                        <DataGridTextColumn Header="Tipo" Binding="{Binding EmployeeType}" Width="*" />
+                    <DataGridTextColumn Header="Activo" Binding="{Binding IsActive}" Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+           
         </Border>
     </Grid>
 </Page>

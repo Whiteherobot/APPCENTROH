@@ -16,13 +16,14 @@ namespace APPCENTROH.Views
     /// </summary>
     public partial class MainView : Window
     {
-        private UserModel user;
+       private UserModel user;
         public MainView(UserModel user)
         {
             InitializeComponent();
             this.user = user;
             txtNameUser.Text = $"{user.Name} {user.LastName}"; // Asigna el nombre del usuario al TextBlock
         }
+
 
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
@@ -109,6 +110,15 @@ namespace APPCENTROH.Views
 
             mainFrame.Navigate(new ServiceView());
             ShowText_Click(sender, e);
+
+        }
+        private void RbShowHomeView_Clic(object sender, RoutedEventArgs e)
+        {
+            LoginView loginView = new LoginView();
+            loginView.Show();
+
+             this.Close();
+
 
         }
 

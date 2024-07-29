@@ -119,6 +119,7 @@
     <Compile Include="Models\IUserRepository.cs" />
     <Compile Include="Models\UserAccountModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserModel1.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
@@ -126,10 +127,15 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\SessionData.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
     <Compile Include="Views\AddEmploye.xaml.cs">
       <DependentUpon>AddEmploye.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddInvoice.xaml.cs">
+      <DependentUpon>AddInvoice.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddPatient.xaml.cs">
       <DependentUpon>AddPatient.xaml</DependentUpon>
@@ -140,8 +146,8 @@
     <Compile Include="Views\AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AppointmentsView.xaml.cs">
-      <DependentUpon>AppointmentsView.xaml</DependentUpon>
+    <Compile Include="Views\AddDate.xaml.cs">
+      <DependentUpon>AddDate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
@@ -193,6 +199,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddInvoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddPatient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,7 +215,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AppointmentsView.xaml">
+    <Page Include="Views\AddDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -317,6 +327,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="medical-report_4290015.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\knob_16436165.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\4115235-exit-logout-sign-out_114030.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" />

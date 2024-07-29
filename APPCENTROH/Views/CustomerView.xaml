@@ -22,16 +22,17 @@
                 <ColumnDefinition Width="110"/>
                 <ColumnDefinition Width="110"/>
                 <ColumnDefinition Width="110"/>
-                <ColumnDefinition Width="110"/>
+                
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
                         Grid.Column="0">
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
-                <TextBox Text="Search..."   
+                <TextBox Text="Search..."  
+                         x:Name="txtSearchName"
                     FontSize="13"
                          Height="24"
-                           Width="225"
+                           Width="265"
                            Background="Transparent"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
@@ -40,10 +41,12 @@
                              BorderBrush="{StaticResource plainTextColor3}"
                              BorderThickness="0,0,0,1"                             
                              VerticalContentAlignment="Center"
-                             Margin="5,5,0,0"></TextBox>
+                             Margin="5,5,0,0"
+                             GotFocus="txtSearchName_GotFocus"></TextBox>
             </StackPanel>
             <Button Grid.Column="1"
-                            Command="{Binding LoginCommand}"                            
+                            Command="{Binding LoginCommand}"
+                            Click="btnSearch_Click"
                             Content="Search"                            
                             FontSize="12"
                             FontFamily="Montserrat"
@@ -107,46 +110,16 @@
                     </Style>
                 </Button.Style>
             </Button>
+            
             <Button Grid.Column="3"
-                     Command="{Binding LoginCommand}"                            
-                     Content="Save"                            
-                     FontSize="12"
-                     FontFamily="Montserrat"
-                     Cursor="Hand"
-                     BorderThickness="0"
-                     Foreground="White"
-                     VerticalAlignment="Top">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#773DFF"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Height="30"
-                             CornerRadius="15"
-                             Background="{TemplateBinding Background}">
-                                        <ContentPresenter VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#836EFB"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Grid.Column="4"
-                             Command="{Binding LoginCommand}"                            
-                             Content="Update"                            
+                             Command="{Binding UpdateCommand}"                            
+                             Content="Update" 
                              FontSize="12"
                              FontFamily="Montserrat"
                              Cursor="Hand"
                              BorderThickness="0"
                              Foreground="White"
+                             Click="BtnAdd_Click11" 
                              VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -171,7 +144,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Grid.Column="5"
+            <Button Grid.Column="4"
                      Command="{Binding LoginCommand}"                            
                      Content="Delete"                            
                      FontSize="12"
@@ -179,6 +152,7 @@
                      Cursor="Hand"
                      BorderThickness="0"
                      Foreground="White"
+                    Click="BtnAdd_Click22" 
                      VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -205,29 +179,19 @@
             </Button>
 
         </Grid>
-        <Border Grid.Row="1"
-                Background="#200F53"
-                CornerRadius="10" 
-                Padding="10">
-            <DataGrid ColumnWidth="*"
-                  Background="#200F53"
-                  BorderThickness="0">
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Foreground" Value="#BCBEE0"/>
-                        <Setter Property="Padding" Value="10,0,0,10"/>
-                        <Setter Property="FontFamily" Value="Montserrat"/>
-                        <Setter Property="FontSize" Value="15"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
+        <Border Grid.Row="1" 
+            Background="#200F53"
+            BorderThickness="0">
+
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat=""/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Address"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Phone"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Email"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                    <DataGridTextColumn Header="Cedula" Binding="{Binding Cedula}" Width="*" />
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" Width="*" />
+                    <DataGridTextColumn Header="Apellido" Binding="{Binding LastName}" Width="*" />
+                    <DataGridTextColumn Header="Dirreccion" Binding="{Binding Dirreccion}" Width="*" />
+                    <DataGridTextColumn Header="Telefono" Binding="{Binding Telefono}" Width="*" />
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

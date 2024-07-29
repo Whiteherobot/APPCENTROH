@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using APPCENTROH.Views;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,54 +23,27 @@ namespace APPCENTROM.Views
     /// </summary>
     public partial class InvoiceView : Page
     {
- 
+
 
         public InvoiceView()
         {
             InitializeComponent();
-            
+
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-           
-        }
+            MainView mainView = Application.Current.Windows.OfType<MainView>().FirstOrDefault();
 
-       
-
-     
-
-        private void BtnBuscarPAC_Click(object sender, RoutedEventArgs e)
-        {
-             
-        }
-
-       
-
-        
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-          
-        }
-
-
-        private void BtnGuardarDatos_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void BtnEnviarBill_Click(object sender, RoutedEventArgs e)
-        {
+            if (mainView != null)
+            {
+                // Navegar a la nueva página dentro del frame de la ventana principal
+                mainView.mainFrame.Navigate(new AddInvoice());
+            }
 
         }
-
-
     }
+
 }
+
 

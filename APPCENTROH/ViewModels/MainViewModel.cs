@@ -69,18 +69,18 @@ namespace APPCENTROH.ViewModels
         public ICommand ShowCustomerViewCommand { get; }
         public MainViewModel()
         {
-            userRepository = new UserRepository();
+          //  userRepository = new UserRepository();
             CurrentUserAccount = new UserAccountModel();
             //Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
             //Default view
             ExecuteShowHomeViewCommand(null);
-            LoadCurrentUserData();
+            
         }
         private void ExecuteShowCustomerViewCommand(object obj)
         {
-            CurrentChildView = new CustomerViewModel();
+           // CurrentChildView = new CustomerViewModel();
             Caption = "Customers";
             Icon = IconChar.UserGroup;
         }
@@ -91,30 +91,6 @@ namespace APPCENTROH.ViewModels
             Icon = IconChar.Home;
         }
 
-        private void LoadCurrentUserData()
-        {
-            var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
-            if (user != null)
-            {
-                CurrentUserAccount.Username = user.Username;
-
-                // Verificar si la propiedad "Name" contiene un valor y asignar el nombre en consecuencia
-                if (!string.IsNullOrEmpty(user.Name))
-                {
-                    CurrentUserAccount.DisplayName = $"Bienvenido {user.Name} {user.LastName}";
-                }
-                else
-                {
-                    CurrentUserAccount.DisplayName = "Bienvenido";
-                }
-
-                CurrentUserAccount.ProfilePicture = null;
-            }
-            else
-            {
-                CurrentUserAccount.DisplayName = "Invalid user, not logged in";
-                // Ocultar vistas secundarias.
-            }
-        }
+        
     }
 }

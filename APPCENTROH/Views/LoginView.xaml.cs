@@ -1,6 +1,8 @@
 ﻿using APPCENTROH.Models;
 using APPCENTROH.Repositories;
 using APPCENTROH.View;
+using APPCENTROM.Views;
+using System;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
@@ -39,36 +41,53 @@ namespace APPCENTROH.Views
 
             UserRepository userRepository = new UserRepository();
 
-
-            // Autenticar al usuario
-            bool isAuthenticated = userRepository.AuthenticateUser(credential);
+            // Autenticar al usuario y obtener el rol y estado activo
+            string role;
+            bool isActive;
+            bool isAuthenticated = userRepository.AuthenticateUser(credential, out role, out isActive);
 
             if (isAuthenticated)
             {
-                // Obtener detalles del usuario
+                if (!isActive)
+                {
+                    // Si el usuario está inactivo, mostrar un mensaje específico
+                    MessageBox.Show("El usuario está inactivo. Por favor, contacte al administrador.", "Usuario Inactivo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 UserModel user = userRepository.GetByUsername(txtUser.Text);
 
-                if (user != null)
+                if (!string.IsNullOrEmpty(role))
                 {
-                    // Si se encuentra el usuario, abrir la ventana principal
-                    var mainView = new MainView(user);
-                    mainView.Show();
+                    // Abrir la vista correspondiente según el rol
+                    if (string.Equals(role, "Administrador", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var mainView = new MainView(user); // Pasa el objeto user si es necesario
+                        mainView.Show();
+                    }
+                    else if (string.Equals(role, "Empleado", StringComparison.OrdinalIgnoreCase))
+                    {
+
+
+                    }
 
                     // Cerrar la ventana de inicio de sesión
                     this.Close();
                 }
                 else
                 {
-                    // Si no se encuentra el usuario, mostrar un mensaje de error
-                    MessageBox.Show("Error al obtener los detalles del usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    // Si no se encuentra el rol del usuario, mostrar un mensaje de error
+                    MessageBox.Show("Error al obtener el rol del usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
+                // Cerrar la ventana de inicio de sesión
+                this.Close();
             }
             else
             {
-                // Si la autenticación falla, mostrar un mensaje de error al usuario
+                // Si la autenticación falla y el usuario no está inactivo, mostrar un mensaje de error de contraseña
                 MessageBox.Show("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.", "Error de autenticación", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void BtnRegisterClient_Click(object sender, RoutedEventArgs e)

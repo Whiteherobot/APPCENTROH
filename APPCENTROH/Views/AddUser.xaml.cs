@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace APPCENTROM.Views
 {
@@ -24,30 +25,41 @@ namespace APPCENTROM.Views
     /// </summary>
     public partial class AddUser : Page
     {
+        private RegisterViewModel _registerViewModel;
         private RegisterViewModel registerViewModel;
         public AddUser(RegisterViewModel data)
         {
-            registerViewModel = data;
+            _registerViewModel = data;
             InitializeComponent();
+            _registerViewModel = registerViewModel;
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtUser.Text) ||
-            string.IsNullOrWhiteSpace(txtPass.Password) ||
-            string.IsNullOrWhiteSpace(txtPassConfirm.Password))
+                string.IsNullOrWhiteSpace(txtPass.Password) ||
+                string.IsNullOrWhiteSpace(txtPassConfirm.Password) ||
+                string.IsNullOrWhiteSpace(txtPermiso.Text))
             {
                 MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
             if (txtPass.Password != txtPassConfirm.Password)
             {
                 MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            if (_registerViewModel == null)
+            {
+                MessageBox.Show("No se ha proporcionado información de la persona.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Llama al método que realiza la inserción en la base de datos
             UserRepository userRepository = new UserRepository();
-            userRepository.InsertData(registerViewModel, txtUser.Text, txtPass.Password);
+            userRepository.InsertData(_registerViewModel, txtUser.Text, txtPass.Password, txtPermiso.Text);
 
             // Mostrar mensaje de éxito y cerrar las ventanas
             MessageBox.Show("Registro exitoso", "Éxito");
@@ -56,10 +68,9 @@ namespace APPCENTROM.Views
 
             if (mainView != null)
             {
-                // Navegar a la nueva página dentro del frame de la ventana principal
-                mainView.mainFrame.Navigate(new CustomerView());
+                mainView.mainFrame.Navigate(new EmployeView());
             }
         }
-
     }
-}
+    }
+    

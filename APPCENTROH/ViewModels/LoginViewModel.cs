@@ -85,9 +85,9 @@ namespace APPCENTROH.ViewModels
         //Constructor
         public LoginViewModel()
         {
-            userRepository = new UserRepository();
-            LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
-            RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
+           // userRepository = new UserRepository();
+           // LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+          //  RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
         }
 
         private bool CanExecuteLoginCommand(object obj)

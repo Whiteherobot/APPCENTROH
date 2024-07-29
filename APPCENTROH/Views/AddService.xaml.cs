@@ -1,4 +1,6 @@
-﻿using APPCENTROH.Views;
+﻿using APPCENTROH.Models;
+using APPCENTROH.Repositories;
+using APPCENTROH.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,15 +29,53 @@ namespace APPCENTROM.Views
         }
         private void BtnContinue_Click(object sender, RoutedEventArgs e)
         {
-            MainView mainView = Application.Current.Windows.OfType<MainView>().FirstOrDefault();
+            // Validación de campos vacíos
+                if (string.IsNullOrWhiteSpace(txtName.Text) ||
+                    string.IsNullOrWhiteSpace(txtPrice.Text) ||
+                    cmbIva.SelectedItem == null)
+                {
+                    MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-            if (mainView != null)
-            {
-                // Navegar a la nueva página dentro del frame de la ventana principal
-                mainView.mainFrame.Navigate(new ServiceView());
-            }
+                // Validación del precio
+                if (!decimal.TryParse(txtPrice.Text, out decimal precio))
+                {
+                    MessageBox.Show("El precio debe ser un valor numérico válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Obtener la selección del ComboBox de IVA
+                string iva = (cmbIva.SelectedItem as ComboBoxItem).Content.ToString() == "Sí" ? "1" : "2";
+
+                try
+                {
+                    UserRepository userRepository = new UserRepository();
+                    userRepository.InsertService(txtName.Text, precio, iva);
+
+                    MessageBox.Show("Servicio agregado exitosamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Limpiar los campos
+                    txtName.Clear();
+                    txtPrice.Clear();
+                    cmbIva.SelectedItem = null;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al agregar el servicio: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                MainView mainView = Application.Current.Windows.OfType<MainView>().FirstOrDefault();
+
+                if (mainView != null)
+                {
+                    // Navegar a la nueva página dentro del frame de la ventana principal
+                    mainView.mainFrame.Navigate(new ServiceView());
+                }
+            
 
 
         }
+
     }
 }

@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="110"/>
                 <ColumnDefinition Width="110"/>
                 <ColumnDefinition Width="110"/>
-                <ColumnDefinition Width="110"/>
+                
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal"
                      VerticalAlignment="Top"
@@ -30,7 +30,8 @@
                 <TextBox Text="Search..."   
                  FontSize="13"
                       Height="24"
-                        Width="225"
+                        Width="298"
+                         x:Name="txtSearchName"
                         Background="Transparent"
                           FontWeight="Medium"
                           FontFamily="Montserrat"                            
@@ -39,11 +40,13 @@
                           BorderBrush="{StaticResource plainTextColor3}"
                           BorderThickness="0,0,0,1"                             
                           VerticalContentAlignment="Center"
-                          Margin="5,5,0,0"></TextBox>
+                          Margin="5,5,0,0"
+                         GotFocus="txtSearchName_GotFocus"></TextBox>
             </StackPanel>
             <Button Grid.Column="1"
                          Command="{Binding LoginCommand}"                            
-                         Content="Search"                            
+                         Content="Search"     
+                    Click="BtnSearch_Click"  
                          FontSize="12"
                          FontFamily="Montserrat"
                          Cursor="Hand"
@@ -105,41 +108,11 @@
                     </Style>
                 </Button.Style>
             </Button>
+           
             <Button Grid.Column="3"
-         Command="{Binding LoginCommand}"                            
-         Content="Save"                            
-         FontSize="12"
-         FontFamily="Montserrat"
-         Cursor="Hand"
-         BorderThickness="0"
-         Foreground="White"
-         VerticalAlignment="Top">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#773DFF"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Height="30"
-                 CornerRadius="15"
-                 Background="{TemplateBinding Background}">
-                                        <ContentPresenter VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#836EFB"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Grid.Column="4"
                  Command="{Binding LoginCommand}"                            
-                 Content="Update"                            
+                 Content="Update" 
+                 Click="BtnAdd_Click1"   
                  FontSize="12"
                  FontFamily="Montserrat"
                  Cursor="Hand"
@@ -171,7 +144,8 @@
             </Button>
             <Button Grid.Column="5"
          Command="{Binding LoginCommand}"                            
-         Content="Delete"                            
+         Content="Delete"  
+         Click="BtnDeleteService_Click"  
          FontSize="12"
          FontFamily="Montserrat"
          Cursor="Hand"
@@ -204,28 +178,18 @@
 
         </Grid>
         <Border Grid.Row="1"
-             Background="#200F53"
-             CornerRadius="10" 
-             Padding="10">
-            <DataGrid ColumnWidth="*"
-               Background="#200F53"
-               BorderThickness="0">
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Foreground" Value="#BCBEE0"/>
-                        <Setter Property="Padding" Value="10,0,0,10"/>
-                        <Setter Property="FontFamily" Value="Montserrat"/>
-                        <Setter Property="FontSize" Value="15"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
+            Background="#200F53"
+            CornerRadius="10" 
+            Padding="10">
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat=""/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Price"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Iva"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                    <DataGridTextColumn Header="Servicio" Binding="{Binding Name}" Width="*" />
+                    <DataGridTextColumn Header="Precio" Binding="{Binding price}" Width="*" />
+                    <DataGridTextColumn Header="Iva" Binding="{Binding IVA}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
+
         </Border>
     </Grid>
 </Page>

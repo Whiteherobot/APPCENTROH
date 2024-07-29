@@ -1,4 +1,6 @@
-﻿using APPCENTROH.Views;
+﻿using APPCENTROH.Repositories;
+using APPCENTROH.Views;
+using APPCENTROM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,31 @@ namespace APPCENTROM.Views
 
         private void BtnContinue_Click(object sender, RoutedEventArgs e)
         {
+
+            // Supongamos que tienes un ViewModel ya poblado con los datos de la vista
+            RegisterViewModel registerViewModel = new RegisterViewModel
+            {
+                cedula = txtID.Text,
+                nombre = txtName.Text,
+                apellido = txtSecondName.Text,
+                direccion = txtAddres.Text,
+                telefono = txtPhone.Text,
+                Email = txtEmail.Text,
+                fecha = txtFecha.Text
+            };
+
+            UserRepository userRepository = new UserRepository();
+            if (userRepository.IsCedulaExists(txtID.Text))
+            {
+                MessageBox.Show("La cédula ya está registrada.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Llama al método de inserción
+           
+            userRepository.InsertData1(registerViewModel);
+
+            // Encuentra la ventana principal abierta
             MainView mainView = Application.Current.Windows.OfType<MainView>().FirstOrDefault();
 
             if (mainView != null)
@@ -36,8 +63,10 @@ namespace APPCENTROM.Views
                 mainView.mainFrame.Navigate(new CustomerView());
             }
 
+
         }
 
-        
+
+
     }
 }

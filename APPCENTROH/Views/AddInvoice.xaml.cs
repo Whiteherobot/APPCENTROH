@@ -16,36 +16,51 @@ using System.Windows.Shapes;
 namespace APPCENTROM.Views
 {
     /// <summary>
-    /// Interaction logic for AppointmentsView.xaml
+    /// Interaction logic for AddInvoice.xaml
     /// </summary>
-    public partial class AppointmentsView : Page
+    public partial class AddInvoice : Page
     {
-       
-        public AppointmentsView()
+        public AddInvoice()
         {
             InitializeComponent();
-            
         }
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+
+
+
+
+        private void BtnBuscarPAC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Confirmar la cita
-            string cedulaPaciente = txtCedPAC.Text;
-            string cedulaMedico = txtCedMED.Text;
-            
 
-            
-
-           
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Cancelar la operación
-            txtCedPAC.Clear();
-            txtCedMED.Clear();
-            
+
         }
 
-        
+
+        private void BtnGuardarDatos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnEnviarBill_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

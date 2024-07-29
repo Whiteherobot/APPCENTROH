@@ -1,4 +1,5 @@
-﻿using APPCENTROH.Views;
+﻿using APPCENTROH.Repositories;
+using APPCENTROH.Views;
 using APPCENTROM.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace APPCENTROM.Views
     /// </summary>
     public partial class AddEmploye : Page
     {
+
         public RegisterViewModel RegisterViewModel { get; private set; }
         public AddEmploye()
         {
@@ -29,38 +31,59 @@ namespace APPCENTROM.Views
         }
         private void BtnContinue_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text) ||
-            string.IsNullOrWhiteSpace(txtSecondName.Text) ||
-            string.IsNullOrWhiteSpace(txtIDnumber.Text) ||
-            string.IsNullOrWhiteSpace(txtAddres.Text) ||
-            string.IsNullOrWhiteSpace(txtPhone.Text) ||
-            string.IsNullOrWhiteSpace(txtMail.Text))
+            if (string.IsNullOrWhiteSpace(txtUser.Text) ||
+                string.IsNullOrWhiteSpace(txtPass.Password) ||
+                string.IsNullOrWhiteSpace(txtPassConfirm.Password) ||
+                string.IsNullOrWhiteSpace(cmbEmployeeType.Text) ||
+                string.IsNullOrWhiteSpace(cmbPermiso.Text))
             {
                 MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            RegisterViewModel = new RegisterViewModel
+            if (txtPass.Password != txtPassConfirm.Password)
+            {
+                MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            UserRepository userRepository = new UserRepository();
+            if (userRepository.IsCedulaExists(txtIDnumber.Text))
+            {
+                MessageBox.Show("La cédula ya está registrada.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Crea el modelo de registro con los datos del formulario
+            RegisterViewModel registerViewModel = new RegisterViewModel
             {
                 nombre = txtName.Text,
                 apellido = txtSecondName.Text,
                 cedula = txtIDnumber.Text,
                 direccion = txtAddres.Text,
                 telefono = txtPhone.Text,
-                Email = txtMail.Text
+                Email = txtMail.Text,
+                tipo = cmbEmployeeType.Text // El tipo de empleado seleccionado
             };
+
+            string username = txtUser.Text;
+            string password = txtPass.Password;
+            string permiso = cmbPermiso.Text; // El permiso seleccionado
+
+            // Llama al método que realiza la inserción en la base de datos
+            
+            userRepository.InsertData(registerViewModel, username, password, permiso);
+
+            // Mostrar mensaje de éxito y cerrar las ventanas
+            MessageBox.Show("Registro exitoso", "Éxito");
 
             MainView mainView = Application.Current.Windows.OfType<MainView>().FirstOrDefault();
 
             if (mainView != null)
             {
-                // Navegar a la nueva página dentro del frame de la ventana principal
-                mainView.mainFrame.Navigate(new AddUser(RegisterViewModel));
-            }
-            else
-            {
-                MessageBox.Show("La ventana principal no está abierta.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                mainView.mainFrame.Navigate(new EmployeView());
             }
         }
     }
-}
+    
+    }

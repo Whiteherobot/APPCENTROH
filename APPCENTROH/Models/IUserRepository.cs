@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 
 namespace APPCENTROH.Models
 {
@@ -8,5 +9,7 @@ namespace APPCENTROH.Models
         void Add(UserModel userModel);
         UserModel GetByUsername(string username);
         //...
+
+        List<UserModel> GetAllUsers();
     }
 }

@@ -32,7 +32,7 @@ namespace APPCENTROM.Views
             if (mainView != null)
             {
                 // Navegar a la nueva página dentro del frame de la ventana principal
-                mainView.mainFrame.Navigate(new AppointmentsView());
+                mainView.mainFrame.Navigate(new AddDate());
             }
 
         }

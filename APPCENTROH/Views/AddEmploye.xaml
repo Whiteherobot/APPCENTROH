@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddEmploye">
     <Border CornerRadius="12">
-        
+
 
         <Border CornerRadius="10"
             BorderThickness="1"
@@ -30,39 +30,65 @@
             </Border.Background>
 
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="25"/>
-                        <ColumnDefinition Width="25"/>
-                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                 </Grid>
 
-                <StackPanel Width="250"
-                        Grid.Row="2"
-                        Orientation="Vertical"
-                        Margin="0,0,0,0">
-                    
+                <StackPanel Grid.Column="2" Margin="250,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="299">
                     <TextBlock Text="Registro"
-                           Foreground="White"
-                           FontSize="25"
-                           FontWeight="Medium"
-                           FontFamily="Montserrat"
-                           TextAlignment="Center"/>
+                               Foreground="White"
+                               FontSize="25"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextAlignment="Center"/>
 
                     <TextBlock Text="Ingresa tus datos"
-                           Foreground="LightGray"
-                           FontSize="12"
-                           FontWeight="Medium"
-                           FontFamily="Montserrat"
-                           TextWrapping="Wrap"
-                           TextAlignment="Center"/>
+                               Foreground="LightGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                    <Button x:Name="btnContinue"
+                                BorderThickness="0"
+                                Content="Continuar"
+                                Foreground="White"
+                                FontSize="14"
+                                FontFamily="Montserrat"
+                                Cursor="Hand"
+                                Click="BtnContinue_Click" Height="690">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#462AD8"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#28AEED"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" Margin="50,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="299">
+
+                    
 
                     <TextBlock Text="Nombres"
                            Foreground="DarkGray"
@@ -220,41 +246,117 @@
                                     AlignmentX="Left"/>
                         </TextBox.Background>
                     </TextBox>
+                    
 
-                    <Button x:Name="btnContinue"
-                                BorderThickness="0"
-                                Content="Continuar"
-                                Foreground="White"
-                                FontSize="14"
-                                FontFamily="Montserrat"
-                                Cursor="Hand"
-                                Grid.Column="2"
-                                Margin="0,10,0,0"
-                                Click="BtnContinue_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#462AD8"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#28AEED"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
+              
 
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="150" Height="40"
-                                    CornerRadius="20"
-                                    Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+
 
                 </StackPanel>
+
+                <StackPanel Margin="513,113,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <TextBlock Text="Nombre de Usuario:"
+                       Foreground="DarkGray"
+                       FontSize="12"
+                       FontWeight="Medium"
+                       FontFamily="Montserrat"
+                       Margin="0,6,0,0"/>
+                    <TextBox x:Name="txtUser" Width="200"
+                             FontSize="13"
+                            FontWeight="Medium"
+                            FontFamily="Montserrat"
+                            Foreground="White"
+                            CaretBrush="LightGray"
+                            BorderBrush="DarkGray"
+                            BorderThickness="0,0,0,1"
+                            Height="24"
+                             VerticalContentAlignment="Center"
+                            Margin="0,5,0,0"
+                            Padding="20,0,0,0">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="\Images\user-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+
+                    <TextBlock Text="Contraseña:"
+                       Foreground="DarkGray"
+                       FontSize="12"
+                       FontWeight="Medium"
+                       FontFamily="Montserrat"
+                       Margin="0,6,0,0"/>
+                    <PasswordBox x:Name="txtPass" Width="200"
+                                 FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                Height="24"
+                                 VerticalContentAlignment="Center"
+                                Margin="0,5,0,0"
+                                Padding="20,0,0,0">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="\Images\key-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+
+                    <TextBlock Text="Confirmar Contraseña:"
+                       Foreground="DarkGray"
+                       FontSize="12"
+                       FontWeight="Medium"
+                       FontFamily="Montserrat"
+                       Margin="0,6,0,0"/>
+                    <PasswordBox x:Name="txtPassConfirm" Width="200"
+                                 FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                Height="24"
+                                 VerticalContentAlignment="Center"
+                                Margin="0,5,0,0"
+                                Padding="20,0,0,0">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="\Images\key-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+
+                    <TextBlock Text="Permiso:"
+                       Foreground="DarkGray"
+                       FontSize="12"
+                       FontWeight="Medium"
+                       FontFamily="Montserrat"
+                       Margin="0,6,0,0"/>
+                    <ComboBox x:Name="cmbPermiso" Width="200">
+                        <ComboBoxItem Content="Administrador"/>
+                        <ComboBoxItem Content="Empleado"/>
+                        <!-- Agrega más tipos de empleado si es necesario -->
+                    </ComboBox>
+
+                    <TextBlock Text="Tipo de Empleado:"
+                       Foreground="DarkGray"
+                       FontSize="12"
+                       FontWeight="Medium"
+                       FontFamily="Montserrat"
+                       Margin="0,6,0,0"/>
+                    <ComboBox x:Name="cmbEmployeeType" Width="200">
+                        <ComboBoxItem Content="Medico"/>
+                        <ComboBoxItem Content="Atención"/>
+                        <!-- Agrega más tipos de empleado si es necesario -->
+                    </ComboBox>
+
+                </StackPanel>
+
             </Grid>
         </Border>
 
